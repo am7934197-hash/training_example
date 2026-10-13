@@ -1,0 +1,253 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/accelerate/utils/launch.py:236: UserWarning: Port `29500` is already in use. Accelerate will attempt to launch in a standalone-like mode by finding an open port automatically for this session. If this current attempt fails, or for more control in future runs, please specify a different port (e.g., `--main_process_port <your_chosen_port>`) or use `--main_process_port 0` for automatic selection in your launch command or Accelerate config file.
+  warnings.warn(
+INFO 2026-09-19 11:20:55 ot_train.py:220 {'action_error_metrics': {'enabled': True,
+                          'every_n_steps': 1000,
+                          'heatmap_every_n_reports': 5,
+                          'num_inference_steps': 10,
+                          'save_heatmap': True},
+ 'batch_size': 16,
+ 'checkpoint_path': '/home/zhangyuqi/zhangyuqi/G1-20260911/g1/0914/only_pick/checkpoints/last',
+ 'cudnn_deterministic': False,
+ 'dataset': {'episodes': None,
+             'image_transforms': {'enable': False,
+                                  'max_num_transforms': 3,
+                                  'random_order': False,
+                                  'tfs': {'affine': {'kwargs': {'degrees': [-5.0,
+                                                                            5.0],
+                                                                'translate': [0.05,
+                                                                              0.05]},
+                                                     'type': 'RandomAffine',
+                                                     'weight': 1.0},
+                                          'brightness': {'kwargs': {'brightness': [0.8,
+                                                                                   1.2]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'contrast': {'kwargs': {'contrast': [0.8,
+                                                                               1.2]},
+                                                       'type': 'ColorJitter',
+                                                       'weight': 1.0},
+                                          'hue': {'kwargs': {'hue': [-0.05,
+                                                                     0.05]},
+                                                  'type': 'ColorJitter',
+                                                  'weight': 1.0},
+                                          'saturation': {'kwargs': {'saturation': [0.5,
+                                                                                   1.5]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'sharpness': {'kwargs': {'sharpness': [0.5,
+                                                                                 1.5]},
+                                                        'type': 'SharpnessJitter',
+                                                        'weight': 1.0}}},
+             'repo_id': 'None',
+             'return_uint8': False,
+             'revision': None,
+             'root': '/home/zhangyuqi/zhangyuqi/G1-20260911/G1_data/pick_place_9.11/only_pick',
+             'streaming': False,
+             'use_imagenet_stats': True,
+             'video_backend': 'torchcodec'},
+ 'env': None,
+ 'eval': {'batch_size': 50, 'n_episodes': 50, 'use_async_envs': True},
+ 'eval_freq': 0,
+ 'gradient_accumulation_steps': 2,
+ 'job_name': '0914_only_pick_relative',
+ 'log_freq': 50,
+ 'num_workers': 8,
+ 'optimizer': {'betas': [0.9, 0.95],
+               'eps': 1e-08,
+               'grad_clip_norm': 1.0,
+               'lr': 2.5e-05,
+               'type': 'adamw',
+               'weight_decay': 0.01},
+ 'output_dir': '/home/zhangyuqi/zhangyuqi/G1-20260911/g1/0914/only_pick',
+ 'peft': None,
+ 'persistent_workers': True,
+ 'policy': {'action_expert_variant': 'gemma_300m',
+            'action_feature_names': ['right_arm_joint1',
+                                     'right_arm_joint2',
+                                     'right_arm_joint3',
+                                     'right_arm_joint4',
+                                     'right_arm_joint5',
+                                     'right_arm_joint6',
+                                     'right_arm_joint7',
+                                     'right_arm_gripper',
+                                     'left_arm_joint1',
+                                     'left_arm_joint2',
+                                     'left_arm_joint3',
+                                     'left_arm_joint4',
+                                     'left_arm_joint5',
+                                     'left_arm_joint6',
+                                     'left_arm_joint7',
+                                     'left_arm_gripper'],
+            'chunk_size': 50,
+            'compile_mode': 'max-autotune',
+            'compile_model': False,
+            'device': 'cuda',
+            'dtype': 'bfloat16',
+            'empty_cameras': 0,
+            'freeze_vision_encoder': False,
+            'gradient_checkpointing': True,
+            'image_resolution': [224, 224],
+            'input_features': {'observation.images.head_right': {'shape': [3,
+                                                                           224,
+                                                                           224],
+                                                                 'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.images.left_arm': {'shape': [3,
+                                                                         224,
+                                                                         224],
+                                                               'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.images.right_arm': {'shape': [3,
+                                                                          224,
+                                                                          224],
+                                                                'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.state': {'shape': [23],
+                                                     'type': <FeatureType.STATE: 'STATE'>}},
+            'license': None,
+            'max_action_dim': 32,
+            'max_period': 4.0,
+            'max_state_dim': 32,
+            'min_period': 0.004,
+            'n_action_steps': 50,
+            'n_obs_steps': 1,
+            'normalization_mapping': {'ACTION': <NormalizationMode.QUANTILES: 'QUANTILES'>,
+                                      'STATE': <NormalizationMode.QUANTILES: 'QUANTILES'>,
+                                      'VISUAL': <NormalizationMode.IDENTITY: 'IDENTITY'>},
+            'num_inference_steps': 10,
+            'optimizer_betas': [0.9, 0.95],
+            'optimizer_eps': 1e-08,
+            'optimizer_grad_clip_norm': 1.0,
+            'optimizer_lr': 2.5e-05,
+            'optimizer_weight_decay': 0.01,
+            'output_features': {'action': {'shape': [16],
+                                           'type': <FeatureType.ACTION: 'ACTION'>}},
+            'paligemma_variant': 'gemma_2b',
+            'pretrained_path': '/home/zhangyuqi/zhangyuqi/G1-20260911/g1/0914/only_pick/checkpoints/last/pretrained_model',
+            'private': None,
+            'push_to_hub': False,
+            'relative_exclude_joints': ['gripper'],
+            'repo_id': None,
+            'rtc_config': None,
+            'scheduler_decay_lr': 2.5e-06,
+            'scheduler_decay_steps': 30000,
+            'scheduler_warmup_steps': 1000,
+            'state_dropout_prob': 0.0,
+            'tags': None,
+            'time_sampling_beta_alpha': 1.5,
+            'time_sampling_beta_beta': 1.0,
+            'time_sampling_offset': 0.001,
+            'time_sampling_scale': 0.999,
+            'tokenizer_max_length': 200,
+            'train_expert_only': False,
+            'type': 'pi05',
+            'use_amp': False,
+            'use_peft': False,
+            'use_relative_actions': True,
+            'vision_tower_pretrained_path': None},
+ 'prefetch_factor': 8,
+ 'rename_map': {},
+ 'resume': True,
+ 'reward_model': None,
+ 'sample_weighting': None,
+ 'save_checkpoint': True,
+ 'save_freq': 5000,
+ 'scheduler': {'decay_lr': 2.5e-06,
+               'num_decay_steps': 30000,
+               'num_warmup_steps': 1000,
+               'peak_lr': 2.5e-05,
+               'type': 'cosine_decay_with_warmup'},
+ 'seed': 42,
+ 'steps': 50000,
+ 'tolerance_s': 0.0001,
+ 'use_policy_training_preset': True,
+ 'wandb': {'add_tags': True,
+           'backend': 'swanlab',
+           'disable_artifact': False,
+           'enable': True,
+           'entity': None,
+           'mode': 'online',
+           'notes': 'G1 only pick relative-action training',
+           'project': 'lerobot-pi05-sorting-0914',
+           'run_id': '0914_only_pick_relative'}}
+INFO 2026-09-19 11:20:55 db_utils.py:180 SwanLab initializing with: project=lerobot-pi05-sorting-0914, workspace=None, mode=cloud, api_key=None
+2026-09-19 11:20:55.651 | ERROR    | swanlab.sdk.internal.pkg.client.session:send:131 
+- [HTTP] GET 
+https://api.swanlab.cn/api/project/yuki1210/lerobot-pi05-sorting-0914/runs/0914_only_p
+ick_relative -> 404 (87ms) trace:mu7tli664nsei1cz | [ERR] code=Not_Found 
+message=资源未找到
+2026-09-19 11:20:55.699 | ERROR    | swanlab.sdk.internal.pkg.safe:block:101 - run 
+start error: prepare_experiment_start:50 -> create_or_resume_experiment:59 -> 
+RuntimeError: Experiment 0914_only_pick_relative does not exist in project 
+lerobot-pi05-sorting-0914
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/home/zhangyuqi/zhangyuqi/from_jizheng/lerobotswanlab-swanlab/src/lerobot/scripts/lerobot_train.py", line 725, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/zhangyuqi/zhangyuqi/from_jizheng/lerobotswanlab-swanlab/src/lerobot/scripts/lerobot_train.py", line 721, in main
+[rank0]:     train()
+[rank0]:   File "/home/zhangyuqi/zhangyuqi/from_jizheng/lerobotswanlab-swanlab/src/lerobot/configs/parser.py", line 320, in wrapper_inner
+[rank0]:     response = fn(cfg, *args, **kwargs)
+[rank0]:                ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/zhangyuqi/zhangyuqi/from_jizheng/lerobotswanlab-swanlab/src/lerobot/scripts/lerobot_train.py", line 224, in train
+[rank0]:     wandb_logger = WandBLogger(cfg)
+[rank0]:                    ^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/zhangyuqi/zhangyuqi/from_jizheng/lerobotswanlab-swanlab/src/lerobot/common/wandb_utils.py", line 114, in __init__
+[rank0]:     self._init_swanlab(cfg)
+[rank0]:   File "/home/zhangyuqi/zhangyuqi/from_jizheng/lerobotswanlab-swanlab/src/lerobot/common/wandb_utils.py", line 182, in _init_swanlab
+[rank0]:     swanlab.init(
+[rank0]:   File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/swanlab/sdk/cmd/guard/__init__.py", line 37, in wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/swanlab/sdk/cmd/init.py", line 241, in init
+[rank0]:     ctx, path = generate_ctx(run_settings, callbacks)
+[rank0]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/swanlab/sdk/cmd/utils/__init__.py", line 37, in wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/swanlab/sdk/cmd/init.py", line 614, in _init
+[rank0]:     raise RuntimeError(resp.message)
+[rank0]: RuntimeError: Failed to start run: Experiment 0914_only_pick_relative does not exist in project lerobot-pi05-sorting-0914
+[rank0]:[W919 11:20:56.599935784 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0919 11:20:56.854000 1611005 site-packages/torch/distributed/elastic/multiprocessing/api.py:1012] Sending process 1611343 closing signal SIGTERM
+E0919 11:20:57.019000 1611005 site-packages/torch/distributed/elastic/multiprocessing/api.py:986] failed (exitcode: 1) local_rank: 0 (pid: 1611342) of binary: /home/zhangyuqi/.conda/envs/lerobot_new/bin/python3.12
+Traceback (most recent call last):
+  File "/home/zhangyuqi/.conda/envs/lerobot_new/bin/accelerate", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1398, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1023, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/torch/distributed/run.py", line 981, in run
+    elastic_launch(
+  File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhangyuqi/.conda/envs/lerobot_new/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+lerobot.scripts.lerobot_train FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-09-19_11:20:57
+  host      : zp-nc533
+  rank      : 1 (local_rank: 1)
+  exitcode  : -15 (pid: 1611343)
+  error_file: <N/A>
+  traceback : Signal 15 (SIGTERM) received by PID 1611343
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-19_11:20:56
+  host      : zp-nc533
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1611342)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

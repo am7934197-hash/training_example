@@ -1,0 +1,113 @@
+# PI0.5 multi-task pick/place training.
+# Pick episodes from chen/clean_ready_224, place episodes replaced by only_place.
+
+dataset:
+  repo_id: null
+  root: /home/zhangyuqi/zhangyuqi/G1-20260821/G1_data/pick_place_10.09/chen/clean_ready_224
+  episodes: null
+  image_transforms:
+    enable: false
+    max_num_transforms: 3
+    random_order: false
+  revision: null
+  use_imagenet_stats: true
+  video_backend: torchcodec
+  return_uint8: false
+  streaming: false
+
+env: null
+
+policy:
+  type: pi05
+  paligemma_variant: gemma_2b
+  action_expert_variant: gemma_300m
+  dtype: bfloat16
+  image_resolution: [224, 224]
+  right_arm_image_dropout:
+    enabled: true
+    probability: 0.2
+  n_obs_steps: 1
+  chunk_size: 50
+  n_action_steps: 50
+  max_state_dim: 32
+  max_action_dim: 32
+  normalization_mapping:
+    VISUAL: IDENTITY
+    STATE: QUANTILES
+    ACTION: QUANTILES
+  use_relative_actions: true
+  relative_exclude_joints: ["gripper"]
+  num_inference_steps: 10
+  time_sampling_beta_alpha: 1.5
+  time_sampling_beta_beta: 1.0
+  time_sampling_scale: 0.999
+  time_sampling_offset: 0.001
+  min_period: 0.004
+  max_period: 4.0
+  compile_model: false
+  compile_mode: max-autotune
+  freeze_vision_encoder: false
+  train_expert_only: false
+  gradient_checkpointing: true
+  device: cuda
+  use_amp: false
+  use_peft: false
+  optimizer_lr: 2.5e-5
+  optimizer_betas: [0.9, 0.95]
+  optimizer_eps: 1.0e-8
+  optimizer_weight_decay: 0.01
+  optimizer_grad_clip_norm: 1.0
+  scheduler_warmup_steps: 1000
+  scheduler_decay_steps: 40000
+  scheduler_decay_lr: 2.5e-6
+  pretrained_path: /home/zhangyuqi/zhangyuqi/models/models/pi05_base
+  push_to_hub: false
+
+reward_model: null
+output_dir: /home/zhangyuqi/zhangyuqi/G1-20260911/g1/1009/pick_place_old
+job_name: 1009_pick_place_all_sft_new_pi05_relative
+
+seed: 42
+resume: false
+cudnn_deterministic: false
+batch_size: 8
+gradient_accumulation_steps: 2
+num_workers: 4
+prefetch_factor: 4
+persistent_workers: true
+
+action_error_metrics:
+  enabled: true
+  every_n_steps: 1000
+  heatmap_every_n_reports: 5
+  num_inference_steps: 10
+  save_heatmap: true
+
+steps: 40000
+log_freq: 50
+tolerance_s: 0.0001
+eval_freq: 0
+save_freq: 5000
+save_checkpoint: true
+use_policy_training_preset: true
+
+eval:
+  n_episodes: 50
+  batch_size: 50
+  use_async_envs: true
+
+wandb:
+  enable: true
+  disable_artifact: false
+  project: lerobot-pi05-pick-place-multitask
+  entity: null
+  notes: 4 pick tasks from chen clean_ready_224 plus only_place; relative-action PI0.5 training on GPUs 4,5,6
+  run_id: null
+  mode: online
+  add_tags: true
+  backend: swanlab
+
+peft: null
+sample_weighting: null
+rename_map: {}
+checkpoint_path: null
